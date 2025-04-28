@@ -78,24 +78,24 @@ TEMPLATES = [
 WSGI_APPLICATION = 'jmt_foundation.wsgi.application'
 
 # Database
-try:
-    import dj_database_url
+#try:
+#    import dj_database_url
+#
+#    DATABASES = {
+#    """'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
 
-    DATABASES = {
-    """'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-
-    }"""
+#    }"""
         
-    'default': dj_database_url.config(default='sqlite:///db.sqlite3')
+#    'default': dj_database_url.config(default='sqlite:///db.sqlite3')
 
-    }
+#    }
 
-except ImportError:
-    DATABASES = {
+#except ImportError:
+DATABASES = {
         'default': {
-           'ENGINE': 'django.db.backends.sqlite3',
+            'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
