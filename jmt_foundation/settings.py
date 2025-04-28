@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
-#import dj_database_url
+
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -10,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-sk0e8q)ks4ix4v!m7l=hx_=oi+7$9y)4md-8oq^b0k9mp0^faq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 # ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
 # ALLOWED_HOSTS = ['jmt-foundation.herokuapp.com', 'jmt-foundation.onrender.com']
 # ALLOWED_HOSTS = ['jmt-foundation.herokuapp.com']
@@ -77,13 +78,27 @@ TEMPLATES = [
 WSGI_APPLICATION = 'jmt_foundation.wsgi.application'
 
 # Database
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+#try:
+#    import dj_database_url
+#
+#    DATABASES = {
+#    """'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
 
+#    }"""
+        
+#    'default': dj_database_url.config(default='sqlite:///db.sqlite3')
+
+#    }
+
+#except ImportError:
+DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
