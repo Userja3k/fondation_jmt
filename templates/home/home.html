@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load home_extras %}
+
+{% block title %}Fondation JMT - Accueil{% endblock %}
+
+{% block content %}
+    <!-- Hero section with blurred background -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="gradient-text">Bienvenue</h1>
+            <p>La Fondation JMT vous présente une plateforme pour repandre la Parole du Christ et vous presenter les potentiels des jeunes dévoués dans l'apprentissage et la présentation de la Bonne Nouvelle.</p>
+        </div>
+    </section>
+    
+    <div class="container">
+        <!-- Weekly service section -->
+        {% if weekly_service %}
+            <section class="section">
+                <div class="weekly-service">
+                    <h2>Culte de la semaine</h2>
+                    <h3>{{ weekly_service.title }}</h3>
+                    <p>{{ weekly_service.description }}</p>
+                    
+                    <div class="service-details">
+                        <div class="detail">
+                            <i class="far fa-calendar"></i>
+                            <span>{{ weekly_service.date|date:"l j F Y" }}</span>
+                        </div>
+                        <div class="detail">
+                            <i class="far fa-clock"></i>
+                            <span>{{ weekly_service.time|time:"H:i" }}</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>{{ weekly_service.location }}</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+        
+        <!-- Homepage sections -->
+        {% for section in sections %}
+            <section class="section">
+                <h2 class="section-title">{{ section.title }}</h2>
+                
+                <div class="carousel">
+                    <div class="carousel-inner">
+                        {% if section.section_type == 'cultes' %}
+                            {% for service in section_content|get_item:section.id %}
+                                <div class="carousel-item">
+                                    <div class="card">
+                                        <img src="{{ service.image.url }}" alt="{{ service.title }}" class="card-image">
+                                        <div class="card-content">
+                                            <h3 class="card-title">{{ service.title }}</h3>
+                                            <p class="card-text">{{ service.theme|truncatechars:100 }}</p>
+                                            <a href="{% url 'archive:service_detail' service.id %}" class="card-link">Voir plus</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% empty %}
+                                <p>Aucun culte disponible pour le moment.</p>
+                            {% endfor %}
+                        {% elif section.section_type == 'evenements' %}
+                            {% for event in section_content|get_item:section.id %}
+                                <div class="carousel-item">
+                                    <div class="card">
+                                        <img src="{{ event.image.url }}" alt="{{ event.title }}" class="card-image">
+                                        <div class="card-content">
+                                            <h3 class="card-title">{{ event.title }}</h3>
+                                            <p class="card-text">{{ event.description|truncatechars:100 }}</p>
+                                            <a href="{% url 'news:event_detail' event.id %}" class="card-link">Voir plus</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% empty %}
+                                <p>Aucun événement disponible pour le moment.</p>
+                            {% endfor %}
+                        {% elif section.section_type == 'theologie' %}
+                            {% for course in section_content|get_item:section.id %}
+                                <div class="carousel-item">
+                                    <div class="card">
+                                        <img src="{{ course.image.url }}" alt="{{ course.title }}" class="card-image">
+                                        <div class="card-content">
+                                            <h3 class="card-title">{{ course.title }}</h3>
+                                            <p class="card-text">{{ course.description|truncatechars:100 }}</p>
+                                            <a href="{% url 'theology:theology_detail' course.id %}" class="card-link">Voir plus</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% empty %}
+                                <p>Aucun cours disponible pour le moment.</p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                
+                {% if section.section_type == 'cultes' %}
+                    <div class="text-center mt-4">
+                        <a href="{% url 'archive:archive_list' %}" class="btn">Voir tous les cultes</a>
+                    </div>
+                {% elif section.section_type == 'evenements' %}
+                    <div class="text-center mt-4">
+                        <a href="{% url 'news:news_list' %}" class="btn">Voir tous les événements</a>
+                    </div>
+                {% elif section.section_type == 'theologie' %}
+                    <div class="text-center mt-4">
+                        <a href="{% url 'theology:theology_list' %}" class="btn">Voir tous les cours</a>
+                    </div>
+                {% endif %}
+            </section>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        // Custom carousel code for homepage if needed
+    </script>
+{% endblock %}

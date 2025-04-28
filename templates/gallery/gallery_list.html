@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Galerie - Fondation JMT{% endblock %}
+
+{% block content %}
+<div class="container section">
+    <h1 class="section-title">Galerie</h1>
+    {% if gallery_items %}
+        <div class="card-grid">
+            {% for item in gallery_items %}
+                <div class="card">
+                    <img src="{{ item.image.url }}" alt="Gallery Image" class="card-image">
+                    <h2 class="card-title">Photo</h2>
+                    <p class="card-text">{{ item.description|truncatechars:150 }}</p>
+                    {% if item.related_video %} 
+                        <video controls class="card-video">
+                            <source src="{{ item.related_video.url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Aucune photo disponible pour le moment.</p>
+    {% endif %}
+</div>
+{% endblock %}

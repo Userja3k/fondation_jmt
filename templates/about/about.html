@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}À propos - Fondation JMT{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-6 text-jmtgreen-accent-light dark:text-jmtgreen-accent-dark">À propos de la Fondation JMT</h1>
+    {% if content %}
+        <div class="mb-8">
+            {{ content.description|safe }}
+        </div>
+    {% endif %}
+    
+    <section class="mb-12">
+        <h2 class="text-3xl font-semibold mb-4 text-jmtgreen-accent-light dark:text-jmtgreen-accent-dark">Fondateurs</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {% for founder in founders %}
+                <div class="card bg-white dark:bg-gray-800 rounded shadow p-4 text-center">
+                    <img src="{{ founder.photo.url }}" alt="{{ founder.name }}" class="w-32 h-32 object-cover rounded-full mx-auto mb-4">
+                    <h3 class="text-xl font-bold mb-2">{{ founder.name }}</h3>
+                    <p>{{ founder.bio }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    
+    <section>
+        <h2 class="text-3xl font-semibold mb-4 text-jmtgreen-accent-light dark:text-jmtgreen-accent-dark">Partenaires</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-center">
+            {% for partner in partners %}
+                <div class="flex justify-center">
+                    <img src="{{ partner.logo.url }}" alt="{{ partner.name }}" class="max-h-20 object-contain">
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}

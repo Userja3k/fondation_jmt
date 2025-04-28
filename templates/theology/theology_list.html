@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Cours de Théologie - Fondation JMT{% endblock %}
+
+{% block content %}
+<div class="container section">
+    <h1 class="section-title">Cours de Théologie</h1>
+    {% if courses %}
+        <div class="card-grid">
+            {% for course in courses %}
+                <div class="card">
+                    <img src="{{ course.image.url }}" alt="{{ course.title }}" class="card-image">
+                    <h2 class="card-title">{{ course.title }}</h2>
+                    <p class="card-text">{{ course.description|truncatechars:150 }}</p>
+                    <p class="card-text" style="font-size: 0.875rem; color: var(--color-text-light); margin-bottom: 1rem;">
+                        {{ course.date|date:"d M Y" }} - {{ course.location }}
+                    </p>
+                    <a href="{% url 'theology:theology_detail' course.id %}" class="btn">Voir plus</a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Aucun cours disponible pour le moment.</p>
+    {% endif %}
+</div>
+{% endblock %}

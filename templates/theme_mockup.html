@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fondation JMT Theme Mockup</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+    }
+    .panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      padding: 2rem;
+      box-sizing: border-box;
+    }
+    .light {
+      background-color: #f0fdf4; /* jmtgreen-light */
+      color: #022c22; /* jmtgreen-dark for text */
+    }
+    .dark {
+      background-color: #022c22; /* jmtgreen-dark */
+      color: #a0f0c0; /* lighter green text */
+    }
+    .box {
+      width: 200px;
+      height: 200px;
+      border-radius: 12px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+    .light .box {
+      background: linear-gradient(135deg, #f0fdf4, #34d399);
+    }
+    .dark .box {
+      background: linear-gradient(135deg, #022c22, #10b981);
+    }
+    h2 {
+      margin: 0 0 1rem 0;
+      font-size: 2rem;
+    }
+    p {
+      max-width: 220px;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="panel light">
+    <h2>Light Mode Background</h2>
+    <div class="box"></div>
+    <p>Background color: #f0fdf4 (Light Green)</p>
+  </div>
+  <div class="panel dark">
+    <h2>Dark Mode Background</h2>
+    <div class="box"></div>
+    <p>Background color: #022c22 (Dark Green)</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Archives - Fondation JMT{% endblock %}
+
+{% block content %}
+
+<div class="container section">
+    <h1 class="section-title">Archives des Cultes et Débats</h1>
+    
+    <form method="get" class="search-form" >
+        <input type="text" name="q" placeholder="Rechercher..." value="{{ search_query }}" class="search-input">
+        <input type="date" name="date" value="{{ date_query }}" class="search-input">
+        <button type="submit" class="btn">Rechercher</button>
+    </form>
+    
+    <section class="mb-8">
+        <h2 class="section-title">Cultes Archivés</h2>
+        {% if services %}
+            <div class="card-grid">
+                {% for service in services %}
+                    <div class="card">
+                        <img src="{{ service.image.url }}" alt="{{ service.title }}" class="card-image">
+                        <h3 class="card-title">{{ service.title }}</h3>
+                        <p class="card-text">{{ service.theme|truncatechars:150 }}</p>
+                        <p class="card-text" style="font-size: 0.875rem; color: var(--color-text-light); margin-bottom: 1rem;">{{ service.date|date:"d M Y" }}</p>
+                        <a href="{% url 'archive:service_detail' service.id %}" class="btn">Voir plus</a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>Aucun culte archivé disponible.</p>
+        {% endif %}
+    </section>
+    
+    <section>
+        <h2 class="section-title">Débats Archivés</h2>
+        {% if debates %}
+            <div class="card-grid">
+                {% for debate in debates %}
+                    <div class="card">
+                        <h3 class="card-title">{{ debate.title }}</h3>
+                        <p class="card-text">{{ debate.topic|truncatechars:150 }}</p>
+                        <p class="card-text" style="font-size: 0.875rem; color: var(--color-text-light); margin-bottom: 1rem;">{{ debate.date|date:"d M Y" }}</p>
+                        <a href="{% url 'archive:debate_detail' debate.id %}" class="btn">Voir plus</a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>Aucun débat archivé disponible.</p>
+        {% endif %}
+    </section>
+</div>
+{% endblock %}
