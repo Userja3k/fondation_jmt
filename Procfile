@@ -1,1 +1,1 @@
-web: gunicorn jmt_foundation.wsgi
+web: gunicorn fondation_jmt.wsgi
