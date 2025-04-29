@@ -15,7 +15,7 @@ DEBUG = True
 # ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
 # ALLOWED_HOSTS = ['jmt-foundation.herokuapp.com', 'jmt-foundation.onrender.com']
 # ALLOWED_HOSTS = ['jmt-foundation.herokuapp.com']
-ALLOWED_HOSTS = ['jmt-foundation.onrender.com']
+ALLOWED_HOSTS = ['fondation-jmt.onrender.com', 'localhost', '127.0.0.1']
 
 
 ALLOWED_HOSTS = []
