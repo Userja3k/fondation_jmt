@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-sk0e8q)ks4ix4v!m7l=hx_=oi+7$9y)4md-8oq^b0k9mp0^faq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 # ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
 # ALLOWED_HOSTS = ['jmt-foundation.herokuapp.com', 'jmt-foundation.onrender.com']
 # ALLOWED_HOSTS = ['jmt-foundation.herokuapp.com']
