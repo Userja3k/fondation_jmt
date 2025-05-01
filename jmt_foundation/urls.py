@@ -12,6 +12,7 @@ urlpatterns = [
     path('theology/', include('theology.urls')),
     path('about/', include('about.urls')),
     path('users/', include('users.urls')),
+    path('custom-admin/', include('custom_admin.urls', namespace='custom_admin')),
 ]
 
 if settings.DEBUG:

@@ -9,6 +9,7 @@
     <title>{% block title %}Fondation JMT{% endblock %}</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'bootstrap-5.3.5-dist/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     {% block extra_css %}{% endblock %}
 </head>
@@ -33,7 +34,7 @@
                     <li><a href="{% url 'theology:theology_list' %}">Théologie</a></li>
                     <li><a href="{% url 'about:about' %}">À propos</a></li>
                     {% if user.is_authenticated %}
-                        <li><a href="{% url 'users:profile' %}">Mon profil</a></li>
+                        <li><a href="{% url 'custom_admin:dashboard' %}">Tableau de bord</a></li>
                         <li><a href="{% url 'users:logout' %}">Déconnexion</a></li>
                     {% else %}
                         <li><a href="{% url 'users:login' %}">Se connecter</a></li>
@@ -106,6 +107,7 @@
     </footer>
     
     <!-- Scripts -->
+    <script src="{% static 'bootstrap-5.3.5-dist/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
     {% block extra_js %}{% endblock %}
 </body>

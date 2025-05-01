@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Théologie Manager{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Théologie Manager</h1>
+
+    <form method="post" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Ajouter Cours de Théologie</button>
+    </form>
+    <hr>
+    <ul>
+        {% for course in theology_courses %}
+            <li>{{ course.title }} - {{ course.date }}</li>
+        {% empty %}
+            <li>Aucun cours de théologie disponible.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

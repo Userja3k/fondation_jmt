@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home Manager{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Gestion de la page d'accueil</h1>
+
+    <section class="mb-5">
+        <h2>Événements Spéciaux</h2>
+        <form method="post" novalidate class="mb-3">
+            {% csrf_token %}
+            {{ special_event_form.as_p }}
+            <button type="submit" name="add_special_event" class="btn btn-primary">Ajouter Événement Spécial</button>
+        </form>
+        <hr>
+        <ul class="list-group">
+            {% for event in special_events %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ event.title }} - {{ event.date }} - {{ event.theme }}
+                </li>
+            {% empty %}
+                <li class="list-group-item text-muted">Aucun événement spécial.</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section class="mb-5">
+        <h2>Cultes</h2>
+        <form method="post" enctype="multipart/form-data" novalidate class="mb-3">
+            {% csrf_token %}
+            {{ culte_form.as_p }}
+            <button type="submit" name="add_culte" class="btn btn-success">Ajouter Culte</button>
+        </form>
+        <hr>
+        <ul class="list-group">
+            {% for culte in cultes %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ culte.title }} - {{ culte.date }}
+                </li>
+            {% empty %}
+                <li class="list-group-item text-muted">Aucun culte.</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section class="mb-5">
+        <h2>Cours de Théologie</h2>
+        <form method="post" enctype="multipart/form-data" novalidate class="mb-3">
+            {% csrf_token %}
+            {{ theology_course_form.as_p }}
+            <button type="submit" name="add_theology_course" class="btn btn-warning">Ajouter Cours de Théologie</button>
+        </form>
+        <hr>
+        <ul class="list-group">
+            {% for course in theology_courses %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ course.title }} - {{ course.date }}
+                </li>
+            {% empty %}
+                <li class="list-group-item text-muted">Aucun cours de théologie.</li>
+            {% endfor %}
+        </ul>
+    </section>
+</div>
+{% endblock %}

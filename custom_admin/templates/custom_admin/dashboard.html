@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Tableau de bord - Custom Admin{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Tableau de bord</h1>
+    <ul>
+        {% for section in sections %}
+            <li><a href="{{ section.url }}">{{ section.name }}</a></li>
+        {% empty %}
+            <li>Aucune section disponible.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

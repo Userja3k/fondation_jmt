@@ -1,9 +1,6 @@
 import os
 from pathlib import Path
 
-
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -12,11 +9,6 @@ SECRET_KEY = 'django-insecure-sk0e8q)ks4ix4v!m7l=hx_=oi+7$9y)4md-8oq^b0k9mp0^faq
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-# ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
-# ALLOWED_HOSTS = ['jmt-foundation.herokuapp.com', 'jmt-foundation.onrender.com']
-# ALLOWED_HOSTS = ['jmt-foundation.herokuapp.com']
-ALLOWED_HOSTS = ['fondation-jmt.onrender.com', 'localhost', '127.0.0.1']
-
 
 ALLOWED_HOSTS = []
 
@@ -43,6 +35,7 @@ INSTALLED_APPS = [
     'theology',
     'about',
     'users',
+    'custom_admin',
 ]
 
 MIDDLEWARE = [
@@ -61,7 +54,10 @@ ROOT_URLCONF = 'jmt_foundation.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'custom_admin', 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,30 +73,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'jmt_foundation.wsgi.application'
 
-# Database
-#try:
-#    import dj_database_url
-#
-#    DATABASES = {
-#    """'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-
-#    }"""
-        
-#    'default': dj_database_url.config(default='sqlite:///db.sqlite3')
-
-#    }
-
-#except ImportError:
 DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
 
-# Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -116,31 +95,26 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Internationalization
 LANGUAGE_CODE = 'fr-fr'
 TIME_ZONE = 'Europe/Paris'
 USE_I18N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# SASS processor settings
 SASS_PROCESSOR_ROOT = STATIC_ROOT
 SASS_PROCESSOR_ENABLED = True
 SASS_PROCESSOR_INCLUDE_DIRS = [
     os.path.join(BASE_DIR, 'static/scss')
 ]
 
-# Django Compressor settings
 COMPRESS_ENABLED = True
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django-libsass'),
@@ -153,17 +127,13 @@ STATICFILES_FINDERS = [
     'compressor.finders.CompressorFinder',
 ]
 
-# Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Theme settings
 THEME_COOKIE_NAME = 'jmt_theme'
 DEFAULT_THEME = 'light'
 
-# Auth settings
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = '/users/login/'
 
-# Crispy Forms
 CRISPY_TEMPLATE_PACK = 'tailwind'

@@ -1,15 +1,19 @@
 from django.shortcuts import render
 from django.db.models import Prefetch
-from .models import WeeklyService, HomePageSection
+from .models import WeeklyService, HomePageSection, SpecialEvent, Culte
 from news.models import Event
 from archive.models import ArchivedService
 from theology.models import TheologyCourse
 from django.shortcuts import redirect
 
-
 def home(request):
     """View for the homepage."""
     weekly_service = WeeklyService.objects.order_by('-date').first()
+    
+    # Get the special event marked as culte de la semaine
+    culte_semaine = SpecialEvent.objects.filter(est_culte_de_la_semaine=True).first()
+    if culte_semaine and not culte_semaine.is_active():
+        culte_semaine = None  # expired
     
     # Get all active homepage sections in their display order
     sections = HomePageSection.objects.filter(is_active=True).order_by('display_order')
@@ -18,7 +22,7 @@ def home(request):
     section_content = {}
     for section in sections:
         if section.section_type == 'cultes':
-            section_content[section.id] = ArchivedService.objects.order_by('-date')[:3]
+            section_content[section.id] = Culte.objects.order_by('-date')[:3]
         elif section.section_type == 'evenements':
             section_content[section.id] = Event.objects.filter(is_upcoming=True).order_by('date')[:3]
         elif section.section_type == 'theologie':
@@ -26,6 +30,7 @@ def home(request):
     
     context = {
         'weekly_service': weekly_service,
+        'culte_semaine': culte_semaine,
         'sections': sections,
         'section_content': section_content,
     }

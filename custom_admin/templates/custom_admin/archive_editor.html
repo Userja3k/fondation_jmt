@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Archive Editor{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Gestion des Archives</h1>
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Sélectionner</th>
+                    <th>Titre</th>
+                    <th>Date</th>
+                    <th>Thème</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for archive in archives %}
+                <tr>
+                    <td>
+                        <input type="checkbox" name="selected_archives" value="{{ archive.id }}">
+                    </td>
+                    <td>{{ archive.title }}</td>
+                    <td>{{ archive.date }}</td>
+                    <td>{{ archive.theme }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="text-muted">Aucune archive disponible.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary">Enregistrer la sélection</button>
+    </form>
+</div>
+{% endblock %}

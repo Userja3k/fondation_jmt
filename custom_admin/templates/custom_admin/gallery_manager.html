@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Gallery Manager{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Gallery Manager</h1>
+
+    <h2>Albums</h2>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {{ album_form.as_p }}
+        <button type="submit" name="add_album" class="btn btn-primary">Add Album</button>
+    </form>
+    <hr>
+    <ul>
+        {% for album in albums %}
+            <li>{{ album.title }} - {{ album.created_at }}</li>
+        {% empty %}
+            <li>No albums available.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Images</h2>
+    <form method="post" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        {{ image_form.as_p }}
+        <button type="submit" name="add_image" class="btn btn-primary">Add Image</button>
+    </form>
+    <hr>
+    <ul>
+        {% for image in images %}
+            <li>{{ image.title }} - {{ image.created_at }}</li>
+        {% empty %}
+            <li>No images available.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Videos</h2>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {{ video_form.as_p }}
+        <button type="submit" name="add_video" class="btn btn-primary">Add Video</button>
+    </form>
+    <hr>
+    <ul>
+        {% for video in videos %}
+            <li>{{ video.title }} - {{ video.created_at }}</li>
+        {% empty %}
+            <li>No videos available.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

@@ -12,31 +12,25 @@
             <p>La Fondation JMT vous présente une plateforme pour repandre la Parole du Christ et vous presenter les potentiels des jeunes dévoués dans l'apprentissage et la présentation de la Bonne Nouvelle.</p>
         </div>
     </section>
+
+    <!-- Special Event section below hero -->
+    {% if special_event %}
+    <section class="section special-event">
+        <h2>Événement Spécial: {{ special_event.title }}</h2>
+        <p><strong>Date:</strong> {{ special_event.date|date:"l j F Y" }} à {{ special_event.time|time:"H:i" }}</p>
+        <p><strong>Lieu:</strong> {{ special_event.location }}</p>
+        <p><strong>Thème:</strong> {{ special_event.theme }}</p>
+    </section>
+    {% endif %}
     
     <div class="container">
         <!-- Weekly service section -->
-        {% if weekly_service %}
-            <section class="section">
-                <div class="weekly-service">
-                    <h2>Culte de la semaine</h2>
-                    <h3>{{ weekly_service.title }}</h3>
-                    <p>{{ weekly_service.description }}</p>
-                    
-                    <div class="service-details">
-                        <div class="detail">
-                            <i class="far fa-calendar"></i>
-                            <span>{{ weekly_service.date|date:"l j F Y" }}</span>
-                        </div>
-                        <div class="detail">
-                            <i class="far fa-clock"></i>
-                            <span>{{ weekly_service.time|time:"H:i" }}</span>
-                        </div>
-                        <div class="detail">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>{{ weekly_service.location }}</span>
-                        </div>
-                    </div>
-                </div>
+        {% if culte_semaine %}
+            <section class="section culte-de-la-semaine">
+                <h5>CULTE DE LA SEMAINE</h5>
+                <p><strong>{{ culte_semaine.date|date:"l j F" }}</strong></p>
+                <h3>{{ culte_semaine.title }}</h3>
+                <p>{{ culte_semaine.location }} — {{ culte_semaine.time|time:"H:i" }}</p>
             </section>
         {% endif %}
         
@@ -48,14 +42,29 @@
                 <div class="carousel">
                     <div class="carousel-inner">
                         {% if section.section_type == 'cultes' %}
-                            {% for service in section_content|get_item:section.id %}
+                            {% for culte in section_content|get_item:section.id %}
                                 <div class="carousel-item">
                                     <div class="card">
-                                        <img src="{{ service.image.url }}" alt="{{ service.title }}" class="card-image">
+                                        <img src="{{ culte.miniature.url }}" alt="{{ culte.title }}" class="card-image">
                                         <div class="card-content">
-                                            <h3 class="card-title">{{ service.title }}</h3>
-                                            <p class="card-text">{{ service.theme|truncatechars:100 }}</p>
-                                            <a href="{% url 'archive:service_detail' service.id %}" class="card-link">Voir plus</a>
+                                            <h3 class="card-title">{{ culte.title }}</h3>
+                                            <p class="card-text">{{ culte.description_main|truncatechars:100 }}</p>
+                                            <p class="card-text">{{ culte.description_secondary|truncatechars:100 }}</p>
+                                            <div class="videos">
+                                                {% for video in culte.videos.all %}
+                                                    <a href="{{ video.url }}" target="_blank" class="video-link">
+                                                        {{ video.title }} (
+                                                        {% if video.is_song %}
+                                                            Chanson
+                                                        {% else %}
+                                                            Prédication
+                                                        {% endif %}
+                                                        )
+                                                    </a><br>
+                                                {% endfor %}
+                                            </div>
+                                            
+                                            <a href="#" class="card-link">Voir plus</a>
                                         </div>
                                     </div>
                                 </div>
@@ -79,10 +88,10 @@
                             {% endfor %}
                         {% elif section.section_type == 'theologie' %}
                             {% for course in section_content|get_item:section.id %}
-                                <div class="carousel-item">
-                                    <div class="card">
-                                        <img src="{{ course.image.url }}" alt="{{ course.title }}" class="card-image">
-                                        <div class="card-content">
+                                <div class="carousel-item theology-course">
+                                    <div class="card theology-card">
+                                        <img src="{{ course.image.url }}" alt="{{ course.title }}" class="card-image theology-image">
+                                        <div class="card-content theology-content">
                                             <h3 class="card-title">{{ course.title }}</h3>
                                             <p class="card-text">{{ course.description|truncatechars:100 }}</p>
                                             <a href="{% url 'theology:theology_detail' course.id %}" class="card-link">Voir plus</a>
