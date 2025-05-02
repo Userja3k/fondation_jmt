@@ -6,22 +6,33 @@
 
 {% block content %}
     <!-- Hero section with blurred background -->
-    <section class="hero">
-        <div class="hero-content">
+    <section class="hero" style="position: relative; display: flex; flex-direction: column; align-items: center;">
+        <div class="hero-content" style="order: 1;">
             <h1 class="gradient-text">Bienvenue</h1>
             <p>La Fondation JMT vous présente une plateforme pour repandre la Parole du Christ et vous presenter les potentiels des jeunes dévoués dans l'apprentissage et la présentation de la Bonne Nouvelle.</p>
         </div>
+        {% if special_events %}
+        <section class="section special-event" style="order: 2; background-color: #d0f0c0; width: 300px; padding: 20px; margin-top: 20px; border-radius: 8px; color: #064e03; margin-left: auto; margin-right: auto;">
+            {% with event=special_events.0 %}
+            <div style="text-align: center; font-weight: bold; font-size: 1.2rem; margin-bottom: 10px;">
+                Événement spécial
+            </div>
+            <hr>
+            <div style="text-align: center; font-size: 1.5rem; font-weight: 600; margin: 10px 0;">
+                {{ event.title }}
+            </div>
+            <hr>
+            <div style="text-align: center; margin-top: 10px;">
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li>{{ event.theme }}</li>
+                    <li>{{ event.location }}</li>
+                    <li>{{ event.date|date:"l j F Y" }} à {{ event.time|time:"H:i" }}</li>
+                </ul>
+            </div>
+            {% endwith %}
+        </section>
+        {% endif %}
     </section>
-
-    <!-- Special Event section below hero -->
-    {% if special_event %}
-    <section class="section special-event">
-        <h2>Événement Spécial: {{ special_event.title }}</h2>
-        <p><strong>Date:</strong> {{ special_event.date|date:"l j F Y" }} à {{ special_event.time|time:"H:i" }}</p>
-        <p><strong>Lieu:</strong> {{ special_event.location }}</p>
-        <p><strong>Thème:</strong> {{ special_event.theme }}</p>
-    </section>
-    {% endif %}
     
     <div class="container">
         <!-- Weekly service section -->

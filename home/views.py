@@ -8,12 +8,21 @@ from django.shortcuts import redirect
 
 def home(request):
     """View for the homepage."""
+    from django.utils import timezone
+    from datetime import timedelta
+
     weekly_service = WeeklyService.objects.order_by('-date').first()
     
     # Get the special event marked as culte de la semaine
     culte_semaine = SpecialEvent.objects.filter(est_culte_de_la_semaine=True).first()
     if culte_semaine and not culte_semaine.is_active():
         culte_semaine = None  # expired
+    
+    # Calculate the cutoff datetime for active special events
+    cutoff_datetime = timezone.now() - timedelta(days=7)  # Using 7 days as default expire_after_days
+    
+    # Get active special events excluding the culte de la semaine
+    special_events = SpecialEvent.objects.filter(created_at__gte=cutoff_datetime).exclude(est_culte_de_la_semaine=True)
     
     # Get all active homepage sections in their display order
     sections = HomePageSection.objects.filter(is_active=True).order_by('display_order')
@@ -31,6 +40,7 @@ def home(request):
     context = {
         'weekly_service': weekly_service,
         'culte_semaine': culte_semaine,
+        'special_events': special_events,
         'sections': sections,
         'section_content': section_content,
     }

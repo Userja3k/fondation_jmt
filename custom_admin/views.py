@@ -111,25 +111,37 @@ def gallery_manager(request):
     items = GalleryItem.objects.all().order_by('-date')
     collection_items = GalleryCollectionItem.objects.all().order_by('-id')
 
+    collection_form = None
+    item_form = None
+    collection_item_form = None
+
     if request.method == 'POST':
         if 'add_collection' in request.POST:
-            form = GalleryCollectionForm(request.POST)
-            if form.is_valid():
-                form.save()
+            collection_form = GalleryCollectionForm(request.POST)
+            if collection_form.is_valid():
+                collection_form.save()
                 return redirect('custom_admin:gallery_manager')
         elif 'add_item' in request.POST:
-            form = GalleryItemForm(request.POST, request.FILES)
-            if form.is_valid():
-                form.save()
+            item_form = GalleryItemForm(request.POST, request.FILES)
+            if item_form.is_valid():
+                item_form.save()
                 return redirect('custom_admin:gallery_manager')
         elif 'add_collection_item' in request.POST:
-            form = GalleryCollectionItemForm(request.POST, request.FILES)
-            if form.is_valid():
-                form.save()
+            collection_item_form = GalleryCollectionItemForm(request.POST, request.FILES)
+            if collection_item_form.is_valid():
+                collection_item_form.save()
                 return redirect('custom_admin:gallery_manager')
     else:
         collection_form = GalleryCollectionForm()
         item_form = GalleryItemForm()
+        collection_item_form = GalleryCollectionItemForm()
+
+    # Initialize forms if still None (e.g., POST with invalid form) to avoid UnboundLocalError
+    if collection_form is None:
+        collection_form = GalleryCollectionForm()
+    if item_form is None:
+        item_form = GalleryItemForm()
+    if collection_item_form is None:
         collection_item_form = GalleryCollectionItemForm()
 
     context = {
