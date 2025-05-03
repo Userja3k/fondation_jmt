@@ -125,7 +125,12 @@ a {
   justify-content: center;
   color: #ffffff;
   text-align: center;
-  margin-top: 4rem; }
+  margin-top: 4rem;
+  padding-top: 4rem; 
+  box-sizing: border-box;
+  z-index: 1;
+}
+
   .hero::before {
     content: '';
     position: absolute;
@@ -384,17 +389,24 @@ a {
   .hero .hero-content p {
     font-size: 1rem; } }
 
-@media (max-width: 576px) {
-  h1 {
-    font-size: 2rem; }
-  h2 {
-    font-size: 1.5rem; }
-  .hero {
-    height: 50vh; }
-  .section {
-    padding: 2rem 0; }
-  .card-grid {
-    grid-template-columns: 1fr; } }
+    @media (max-width: 576px) {
+      .hero {
+      margin-top: 5rem;
+      padding-top: 5rem;
+      }
+      .special-event {
+      width: 100% !important;
+      padding: 10px !important;
+      margin-top: 10px !important;
+      }
+      .container {
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+      }
+      .culte-de-la-semaine {
+      font-size: 0.9rem !important;
+      }
+      }
 
 .btn {
   display: inline-block;
