@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: jmt-foundation-web
+    env: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
+    startCommand: gunicorn jmt_foundation.wsgi
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        fromDatabase: false
+        value: "your-secret-key"
+      - key: DJANGO_DEBUG
+        fromDatabase: false
+        value: "False"
+      - key: DJANGO_ALLOWED_HOSTS
+        fromDatabase: false
+        value: "your-render-domain.com"
+      - key: DATABASE_URL
+        fromDatabase: true

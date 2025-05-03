@@ -53,50 +53,33 @@
                 <div class="carousel">
                     <div class="carousel-inner">
                         {% if section.section_type == 'cultes' %}
+                            <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;">
                             {% for culte in section_content|get_item:section.id %}
-                                <div class="carousel-item">
-                                    <div class="card">
-                                        <img src="{{ culte.miniature.url }}" alt="{{ culte.title }}" class="card-image">
-                                        <div class="card-content">
-                                            <h3 class="card-title">{{ culte.title }}</h3>
-                                            <p class="card-text">{{ culte.description_main|truncatechars:100 }}</p>
-                                            <p class="card-text">{{ culte.description_secondary|truncatechars:100 }}</p>
-                                            <div class="videos">
-                                                {% for video in culte.videos.all %}
-                                                    <a href="{{ video.url }}" target="_blank" class="video-link">
-                                                        {{ video.title }} (
-                                                        {% if video.is_song %}
-                                                            Chanson
-                                                        {% else %}
-                                                            Prédication
-                                                        {% endif %}
-                                                        )
-                                                    </a><br>
-                                                {% endfor %}
-                                            </div>
-                                            
-                                            <a href="#" class="card-link">Voir plus</a>
-                                        </div>
+                                <div class="card" style="width: 200px; display: flex; flex-direction: column; align-items: center;">
+                                    <img src="{{ culte.miniature.url }}" alt="{{ culte.title }}" class="card-image" style="width: 100%; height: auto; object-fit: cover;">
+                                    <div class="card-content" style="text-align: center; margin-top: 8px;">
+                                        <h3 class="card-title">{{ culte.title }}</h3>
+                                        <p class="card-text">Culte du {{ culte.date|date:"j F Y" }}</p>
                                     </div>
                                 </div>
                             {% empty %}
                                 <p>Aucun culte disponible pour le moment.</p>
                             {% endfor %}
+                            </div>
                         {% elif section.section_type == 'evenements' %}
+                            <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;">
                             {% for event in section_content|get_item:section.id %}
-                                <div class="carousel-item">
-                                    <div class="card">
-                                        <img src="{{ event.image.url }}" alt="{{ event.title }}" class="card-image">
-                                        <div class="card-content">
-                                            <h3 class="card-title">{{ event.title }}</h3>
-                                            <p class="card-text">{{ event.description|truncatechars:100 }}</p>
-                                            <a href="{% url 'news:event_detail' event.id %}" class="card-link">Voir plus</a>
-                                        </div>
+                                <div class="card" style="width: 200px; display: flex; flex-direction: column; align-items: center;">
+                                    <img src="{{ event.image.url }}" alt="{{ event.title }}" class="card-image" style="width: 100%; height: auto; object-fit: cover;">
+                                    <div class="card-content" style="text-align: center; margin-top: 8px;">
+                                        <h3 class="card-title">{{ event.title }}</h3>
+                                        <p class="card-text">Événement du {{ event.date|date:"j F Y" }}</p>
                                     </div>
                                 </div>
                             {% empty %}
                                 <p>Aucun événement disponible pour le moment.</p>
                             {% endfor %}
+                            </div>
                         {% elif section.section_type == 'theologie' %}
                             {% for course in section_content|get_item:section.id %}
                                 <div class="carousel-item theology-course">
