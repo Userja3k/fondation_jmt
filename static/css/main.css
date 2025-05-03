@@ -12,21 +12,40 @@
   --color-text-dark: #e5e7eb;
   --color-card-dark: #0f2922;
   --color-border-dark: #1f3937;
-  --color-hover-dark: #0d433a; }
+  --color-hover-dark: #0d433a;
+}
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box; }
 
-body {
-  font-family: 'Open Sans', sans-serif;
-  background-color: var(--color-bg-light);
-  color: var(--color-text-light);
-  transition: background-color 0.3s, color 0.3s; }
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--color-bg-light);
+    color: var(--color-text-light);
+    transition: background-color 0.3s, color 0.3s;
+    flex: 1 0 auto;
+  }
+
   body.dark {
-    background-color: var(--color-bg-dark);
-    color: var(--color-text-dark); }
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-dark);
+}
+
+#content {
+  flex: 1 0 auto;
+}
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif;
@@ -117,19 +136,19 @@ a {
       .dark .site-header .theme-toggle:hover {
         color: var(--color-secondary-dark); }
 
-.hero {
-  position: relative;
-  height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  text-align: center;
-  margin-top: 4rem;
-  padding-top: 4rem; 
-  box-sizing: border-box;
-  z-index: 1;
-}
+        .hero {
+          position: relative;
+          height: 80vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #ffffff;
+          text-align: center;
+          margin-top: 2rem;
+          padding-top: 2rem;
+          box-sizing: border-box;
+          z-index: 1;
+        }
 
   .hero::before {
     content: '';
@@ -300,9 +319,11 @@ a {
 .site-footer {
   background-color: var(--color-primary-light);
   color: #ffffff;
-  padding: 3rem 0 1.5rem; }
+  padding: 3rem 0 1.5rem;
+  flex-shrink: 0;}
   .dark .site-footer {
-    background-color: var(--color-primary-dark); }
+    background-color: var(--color-primary-dark);
+  }
   .site-footer .footer-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -391,23 +412,25 @@ a {
 
     @media (max-width: 576px) {
       .hero {
-      margin-top: 5rem;
-      padding-top: 5rem;
+        margin-top: 2.5rem;
+        padding-top: 2.5rem;
       }
       .special-event {
-      width: 100% !important;
-      padding: 10px !important;
-      margin-top: 10px !important;
+        width: 100% !important;
+        max-height: 300px;
+        overflow-y: auto;
+        padding: 10px !important;
+        margin-top: 10px !important;
       }
       .container {
-      padding-left: 10px !important;
-      padding-right: 10px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
       }
       .culte-de-la-semaine {
-      font-size: 0.9rem !important;
+        font-size: 0.9rem !important;
       }
-      }
-
+    }
+    
 .btn {
   display: inline-block;
   padding: 0.5rem 1rem;
