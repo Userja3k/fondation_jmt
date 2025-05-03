@@ -12,7 +12,7 @@
             <p>La Fondation JMT vous présente une plateforme pour repandre la Parole du Christ et vous presenter les potentiels des jeunes dévoués dans l'apprentissage et la présentation de la Bonne Nouvelle.</p>
         </div>
         {% if special_events %}
-        <section class="section special-event" style="order: 2; background-color: #d0f0c0; width: 300px; padding: 20px; margin-top: 20px; border-radius: 8px; color: #064e03; margin-left: auto; margin-right: auto;">
+    <section class="section special-event" style="order: 2; background-color: #d0f0c0; max-width: 100%; width: 300px; padding: 20px; margin-top: 20px; border-radius: 8px; color: #064e03; margin-left: auto; margin-right: auto; box-sizing: border-box;">
             {% with event=special_events.0 %}
             <div style="text-align: center; font-weight: bold; font-size: 1.2rem; margin-bottom: 10px;">
                 Événement spécial
@@ -34,7 +34,7 @@
         {% endif %}
     </section>
     
-    <div class="container">
+    <div class="container" style="overflow-x: hidden;">
         <!-- Weekly service section -->
         {% if culte_semaine %}
             <section class="section culte-de-la-semaine">
