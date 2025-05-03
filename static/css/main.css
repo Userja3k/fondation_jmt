@@ -124,7 +124,8 @@ a {
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  text-align: center; }
+  text-align: center;
+  margin-top: 4rem; }
   .hero::before {
     content: '';
     position: absolute;
