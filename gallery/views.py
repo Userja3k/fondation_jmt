@@ -3,11 +3,11 @@ from .models import GalleryItem, GalleryCollection
 
 def gallery_list(request):
     """View for displaying gallery items."""
-    items = GalleryItem.objects.all()
+    gallery_items = GalleryItem.objects.all()
     collections = GalleryCollection.objects.all()
     
     context = {
-        'items': items,
+        'gallery_items': gallery_items,
         'collections': collections,
     }
     

@@ -3,27 +3,70 @@
 
 {% block title %}Galerie - Fondation JMT{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/gallery.css' %}">
+{% endblock %}
+
 {% block content %}
 <div class="container section">
     <h1 class="section-title">Galerie</h1>
-    {% if gallery_items %}
-        <div class="card-grid">
-            {% for item in gallery_items %}
-                <div class="card">
-                    <img src="{{ item.image.url }}" alt="Gallery Image" class="card-image">
-                    <h2 class="card-title">Photo</h2>
-                    <p class="card-text">{{ item.description|truncatechars:150 }}</p>
-                    {% if item.related_video %} 
-                        <video controls class="card-video">
-                            <source src="{{ item.related_video.url }}" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+    {% if collections %}
+        {% for collection in collections %}
+            <div class="gallery-post mb-5 border p-3 rounded">
+                <!-- Partie carousel -->
+                <div id="carousel-{{ collection.id }}" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+
+                        {% for image in collection.items.all %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <img src="{{ image.image.url }}" class="d-block w-100" alt="Image pour {{ collection.title }}">
+                        </div>
+                    {% empty %}
+                        <div class="carousel-item active">
+                            <p>Aucune image disponible</p>
+                        </div>
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-{{ collection.id }}" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Précédent</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carousel-{{ collection.id }}" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Suivant</span>
+                </button>
+            </div>
+
+
+                                <!-- Partie description -->
+                                <div class="gallery-description mt-3">
+                                    <h2 class="gallery-title">{{ collection.title }}</h2>
+                                    <p class="gallery-text" id="desc-{{ collection.id }}">
+                                        {{ collection.description|truncatechars:150 }}
+                                    </p>
+                                    <button class="btn btn-link p-0" type="button" onclick="toggleDescription({{ collection.id }})" id="btn-{{ collection.id }}" data-full-desc="{{ collection.description|escapejs }}" data-trunc-desc="{{ collection.description|truncatechars:150|escapejs }}">
+                                        Voir plus
+                                    </button>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>Aucune collection disponible pour le moment.</p>
                     {% endif %}
                 </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        <p>Aucune photo disponible pour le moment.</p>
-    {% endif %}
-</div>
+                
+
+<script>
+function toggleDescription(id) {
+    const desc = document.getElementById('desc-' + id);
+    const btn = document.getElementById('btn-' + id);
+    if (btn.innerText === 'Voir plus') {
+        desc.innerText = btn.getAttribute('data-full-desc');
+        btn.innerText = 'Voir moins';
+    } else {
+        desc.innerText = btn.getAttribute('data-trunc-desc');
+        btn.innerText = 'Voir plus';
+    }
+}
+</script>
 {% endblock %}

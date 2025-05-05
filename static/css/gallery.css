@@ -1,0 +1,25 @@
+/* Gallery specific image styling */
+.gallery-post img {
+    width: 100%;
+    max-width: 900px;
+    height: 700px;
+    object-fit: cover;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .gallery-post img {
+        height: 500px;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .gallery-post img {
+        height: 300px;
+        max-width: 100%;
+    }
+}

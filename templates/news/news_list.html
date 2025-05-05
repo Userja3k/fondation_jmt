@@ -10,7 +10,12 @@
         <div class="card-grid">
             {% for event in events %}
                 <div class="card">
-                    <img src="{{ event.image.url }}" alt="{{ event.title }}" class="card-image">
+                    {% if event.image %}
+                        <img src="{{ event.image.url }}" alt="{{ event.title }}" class="card-image">
+                    {% else %}
+                        <p>No image available</p>
+                    {% endif %}
+
                     <h2 class="card-title">{{ event.title }}</h2>
                     <p class="card-text">{{ event.description|truncatechars:150 }}</p>
                     <p class="card-text" style="font-size: 0.875rem; color: var(--color-text-light); margin-bottom: 1rem;">
