@@ -1,14 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Event
 from django.utils import timezone
 
 def news_list(request):
     """View for displaying upcoming events."""
     today = timezone.now().date()
-    upcoming_events = Event.objects.filter(date__gte=today).order_by('date')
+    events = Event.objects.filter(date__gte=today).order_by('date')
     
     context = {
-        'upcoming_events': upcoming_events,
+        'events': events,
     }
     
     return render(request, 'news/news_list.html', context)

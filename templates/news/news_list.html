@@ -6,22 +6,25 @@
 {% block content %}
 <div class="container section">
     <h1 class="section-title">Actualités</h1>
+    <p><strong>DEBUG: news_list.html loaded</strong></p>
     {% if events %}
         <div class="card-grid">
             {% for event in events %}
                 <div class="card">
                     {% if event.image %}
-                        <img src="{{ event.image.url }}" alt="{{ event.title }}" class="card-image">
+                        <img src="{{ event.image.url }}" alt="{{ event.title }}" class="card-image" style="float: left; width: 150px; height: 100px; object-fit: cover; margin-right: 15px;">
                     {% else %}
                         <p>No image available</p>
                     {% endif %}
 
                     <h2 class="card-title">{{ event.title }}</h2>
-                    <p class="card-text">{{ event.description|truncatechars:150 }}</p>
+                    <p class="card-text" id="desc-{{ event.id }}">{{ event.description|truncatechars:150 }}</p>
+                    <button class="btn btn-link p-0" type="button" onclick="toggleDescription({{ event.id }})" id="btn-{{ event.id }}" data-full-desc="{{ event.description|escapejs }}" data-trunc-desc="{{ event.description|truncatechars:150|escapejs }}">
+                        Voir plus
+                    </button>
                     <p class="card-text" style="font-size: 0.875rem; color: var(--color-text-light); margin-bottom: 1rem;">
                         {{ event.date|date:"d M Y" }} - {{ event.time|time:"H:i" }} - {{ event.location }}
                     </p>
-                    <a href="{% url 'news:event_detail' event.id %}" class="btn">Voir plus</a>
                 </div>
             {% endfor %}
         </div>
@@ -29,4 +32,18 @@
         <p>Aucune actualité disponible pour le moment.</p>
     {% endif %}
 </div>
+
+<script>
+function toggleDescription(id) {
+    const desc = document.getElementById('desc-' + id);
+    const btn = document.getElementById('btn-' + id);
+    if (btn.innerText === 'Voir plus') {
+        desc.innerText = btn.getAttribute('data-full-desc');
+        btn.innerText = 'Voir moins';
+    } else {
+        desc.innerText = btn.getAttribute('data-trunc-desc');
+        btn.innerText = 'Voir plus';
+    }
+}
+</script>
 {% endblock %}
