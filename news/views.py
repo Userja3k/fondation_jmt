@@ -4,14 +4,14 @@ from django.utils import timezone
 
 def news_list(request):
     """View for displaying upcoming events."""
-    today = timezone.now().date()
-    events = Event.objects.filter(date__gte=today).order_by('date')
+    events = Event.objects.filter(is_upcoming=True).order_by('date')
     
     context = {
         'events': events,
     }
     
     return render(request, 'news/news_list.html', context)
+
 
 def event_detail(request, event_id):
     """View for displaying event details."""

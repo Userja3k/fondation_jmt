@@ -1,7 +1,7 @@
 :root {
   --color-primary-light: #065f46;
   --color-secondary-light: #34d399;
-  --color-bg-light: #f0fdf4;
+  --color-bg-light: #D7F0C5;
   --color-text-light: #1a2e35;
   --color-card-light: #ffffff;
   --color-border-light: #e5e7eb;
@@ -448,3 +448,54 @@ a {
     background-color: var(--color-primary-dark); }
     .dark .btn:hover {
       background-color: var(--color-secondary-dark); }
+
+
+      /* Styles for news list and news items */
+
+
+body .container.section .news-list {
+padding: 0 !important;
+margin: 0 !important;
+}
+
+body .container.section .news-list .news-item {
+  display: flex !important;
+  align-items: center !important;
+  margin-bottom: 1rem !important;
+  border-bottom: 1px solid #ccc !important;
+  padding-bottom: 1rem !important;
+  background-color: transparent !important; /* Remove elevated background /
+  box-shadow: none !important; / Remove shadow /
+  border-radius: 0 !important; / Remove rounded corners */
+  }
+
+body .container.section .news-list .news-item img {
+width: 120px !important;
+height: 80px !important;
+object-fit: cover !important;
+margin-right: 15px !important;
+flex-shrink: 0 !important;
+}
+
+body .container.section .news-list .news-item .news-description {
+  margin-top: 0.5rem !important;
+  }
+
+body .container.section .news-list .news-item h2 {
+margin: 0 0 0.5rem 0 !important;
+}
+
+body .container.section .news-list .news-item button.btn-link {
+  padding: 0 !important;
+  font-weight: normal !important;
+  color: var(--bs-primary) !important;
+  cursor: pointer !important;
+  background: none !important;
+  border: none !important;
+  }
+
+body .container.section .news-list .news-item button.btn-link:hover {
+text-decoration: underline !important;
+}
+
+
