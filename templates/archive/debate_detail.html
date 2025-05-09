@@ -5,10 +5,10 @@
 
 {% block content %}
 <div class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold mb-6 text-jmtgreen-accent-light dark:text-jmtgreen-accent-dark">{{ debate.title }}</h1>
+    <h1 class="text-4xl font-bold mb-6 text-primary-light dark:text-primary-dark">{{ debate.title }}</h1>
     <p class="mb-4">{{ debate.topic }}</p>
     <p class="mb-4">{{ debate.description }}</p>
     <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">{{ debate.date|date:"d M Y" }}</p>
-    <a href="{% url 'archive:archive_list' %}" class="btn bg-jmtgreen-accent-light dark:bg-jmtgreen-accent-dark text-white px-4 py-2 rounded hover:bg-jmtgreen-accent-dark dark:hover:bg-jmtgreen-accent-light transition">Retour aux archives</a>
+    <a href="{% url 'archive:archive_list' %}" class="btn bg-primary-light dark:bg-primary-dark text-white px-4 py-2 rounded hover:bg-secondary-light dark:hover:bg-secondary-dark transition">Retour aux archives</a>
 </div>
 {% endblock %}

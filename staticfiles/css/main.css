@@ -85,7 +85,7 @@ a {
   .dark a {
     color: var(--color-secondary-dark); }
     .dark a:hover {
-      color: #14e8a2; }
+      color: var(--color-secondary-dark); }
 
 .container {
   width: 100%;
