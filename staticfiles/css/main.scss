@@ -1,24 +1,22 @@
 // Variables
-:root {
-  // Light mode colors
-  --color-primary-light: #065f46;
-  --color-secondary-light: #6fe2b8; 
-  --color-bg-light: #f0fdf4;
-  --color-text-light: #1a2e35;
-  --color-card-light: #ffffff;
-  --color-border-light: #e5e7eb;
-  --color-hover-light: #ecfdf5;
-  
-  
-  // Dark mode colors
-  --color-primary-dark: #022c22;
-  --color-secondary-dark: #10b981;
-  --color-bg-dark: #051b16;
-  --color-text-dark: #e5e7eb;
-  --color-card-dark: #0f2922;
-  --color-border-dark: #1f3937;
-  --color-hover-dark: #0d433a;
+:root { 
+  --color-primary-light: #065f9e;       /* Bleu primaire clair */
+  --color-secondary-light: #34b3d3;     /* Bleu secondaire clair (équivalent de #34d399) */
+  --color-bg-light: #C5E1F0;            /* Bleu de fond clair pastel */
+  --color-text-light: #1a2e35;          /* Inchangé (texte neutre foncé) */
+  --color-card-light: #ffffff;          /* Inchangé (carte blanche) */
+  --color-border-light: #e5e7eb;        /* Inchangé (gris clair) */
+  --color-hover-light: #ecf6fd;         /* Bleu très clair pour hover */
+
+  --color-primary-dark: #02224a;        /* Bleu primaire foncé */
+  --color-secondary-dark: #1090b9;      /* Bleu secondaire foncé */
+  --color-bg-dark: #05111b;             /* Bleu très foncé pour fond */
+  --color-text-dark: #e5e7eb;           /* Inchangé (texte clair) */
+  --color-card-dark: #0f1c29;           /* Bleu/gris foncé pour carte */
+  --color-border-dark: #1f2c39;         /* Bordure bleu-gris foncé */
+  --color-hover-dark: #0d2e43;          /* Bleu foncé pour hover */
 }
+
 
 // Base styles
 * {
