@@ -95,36 +95,37 @@
 <div id="carousel-{{ section.id }}" style="overflow-x: auto; scroll-behavior: smooth; -webkit-overflow-scrolling: touch;">
     <div class="d-flex flex-row flex-nowrap">
 
-                                                {% if section.section_type == 'cultes' %}
+                        {% if section.section_type == 'cultes' %}
                             {% for culte in section_content|get_item:section.id %}
-                                <div class="carousel-item {% if forloop.first %}active{% endif %}" style="flex: 0 0 auto; width: 200px; margin-right: 16px;">
+                                <div style="flex: 0 0 auto; width: 200px; margin-right: 16px;">
                                     <div class="card" style="display: flex; flex-direction: column; align-items: center;">
                                         <img src="{{ culte.miniature.url }}" alt="{{ culte.title }}" class="card-image" style="width: 100%; height: auto; object-fit: cover;">
                                         <div class="card-content" style="text-align: center; margin-top: 8px;">
                                             <h3 class="card-title">{{ culte.title }}</h3>
                                             <p class="card-text">Culte du {{ culte.date|date:"j F Y" }}</p>
+                                            <button class="btn btn-link p-0" type="button" onclick="window.location.href='{% url 'archive:archive_list' %}'">Description</button>
                                         </div>
                                     </div>
                                 </div>
                             {% empty %}
                                 <p>Aucun culte disponible pour le moment.</p>
                             {% endfor %}
-{% elif section.section_type == 'evenements' %}
-    {% for event in section_content|get_item:section.id %}
-        <div style="flex: 0 0 auto; width: 200px; margin-right: 16px;">
-            <div class="card" style="display: flex; flex-direction: column; align-items: center;">
-                <img src="{{ event.image.url }}" alt="{{ event.title }}" class="card-image" style="width: 100%; height: auto; object-fit: cover;">
-                <div class="card-content" style="text-align: center; margin-top: 8px;">
-<h3 class="card-title" style="color: #0b64ac;">{{ event.title }}</h3>
-                    <p class="card-text">Événement du {{ event.date|date:"j F Y" }}</p>
-                    <button class="btn btn-link p-0" type="button" onclick="window.location.href='{% url 'news:news_list' %}'">Description</button>
-                </div>
-            </div>
-        </div>
-    {% empty %}
-        <p>Aucun événement disponible pour le moment.</p>
-    {% endfor %}
-{% elif section.section_type == 'theologie' %}
+                            {% elif section.section_type == 'evenements' %}
+                                {% for event in section_content|get_item:section.id %}
+                                    <div style="flex: 0 0 auto; width: 200px; margin-right: 16px;">
+                                        <div class="card" style="display: flex; flex-direction: column; align-items: center;">
+                                            <img src="{{ event.image.url }}" alt="{{ event.title }}" class="card-image" style="width: 100%; height: auto; object-fit: cover;">
+                                            <div class="card-content" style="text-align: center; margin-top: 8px;">
+                            <h3 class="card-title" style="color: #0b64ac;">{{ event.title }}</h3>
+                                                <p class="card-text">Événement du {{ event.date|date:"j F Y" }}</p>
+                                                <button class="btn btn-link p-0" type="button" onclick="window.location.href='{% url 'news:news_list' %}'">Description</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% empty %}
+                                    <p>Aucun événement disponible pour le moment.</p>
+                                {% endfor %}
+                            {% elif section.section_type == 'theologie' %}
                             {% for course in section_content|get_item:section.id %}
                                 <div class="carousel-item theology-course">
                                     <div class="card theology-card">
