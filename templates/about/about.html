@@ -27,12 +27,30 @@
     
     <section>
         <h2 class="text-3xl font-semibold mb-4 text-jmtgreen-accent-light dark:text-jmtgreen-accent-dark">Partenaires</h2>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-center">
-            {% for partner in partners %}
-                <div class="flex justify-center">
-                    <img src="{{ partner.logo.url }}" alt="{{ partner.name }}" class="max-h-20 object-contain">
-                </div>
-            {% endfor %}
+        <div id="carousel-partenaires" style="overflow-x: auto; scroll-behavior: smooth; -webkit-overflow-scrolling: touch;">
+            <div class="d-flex flex-row flex-nowrap">
+                {% for partner in partners %}
+                    <div style="flex: 0 0 auto; width: 200px; margin-right: 16px;">
+                        <div class="card" style="display: flex; flex-direction: column; align-items: center;">
+                            <img src="{{ partner.logo.url }}" alt="{{ partner.name }}" class="card-image" style="width: 100%; height: auto; object-fit: contain;">
+                            <div class="card-content" style="text-align: center; margin-top: 8px;">
+                                <h3 class="card-title">{{ partner.name }}</h3>
+                                <button class="btn btn-link p-0" type="button" onclick="window.open('{{ partner.website_url }}', '_blank')">Site web</button>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>Aucun partenaire disponible pour le moment.</p>
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" onclick="document.getElementById('carousel-partenaires').scrollBy({left: -220, behavior: 'smooth'})">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Précédent</span>
+            </button>
+            <button class="carousel-control-next" type="button" onclick="document.getElementById('carousel-partenaires').scrollBy({left: 220, behavior: 'smooth'})">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Suivant</span>
+            </button>
         </div>
     </section>
 </div>
