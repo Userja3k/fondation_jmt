@@ -17,11 +17,18 @@
     <!-- Header -->
     <header class="site-header">
         <div class="container">
+            <a href="{% url 'home:home' %}" class="logo">
+                <img src="{% static 'img/logo_Claire.jpg' %}" alt="Fondation JMT" class="logo-light" style="display: {% if current_theme == 'light' %}block{% else %}none{% endif %}; max-height: 50px;">
+                <img src="{% static 'img/logo_Dark.jpg' %}" alt="Fondation JMT" class="logo-dark" style="display: {% if current_theme == 'dark' %}block{% else %}none{% endif %}; max-height: 50px;">
+                </a>
+
             <a href="{% url 'home:home' %}" class="logo">Fondation JMT</a>
             
             <!-- Mobile menu button -->
-            <button id="hamburger" class="hamburger d-md-none">
-                <i class="fas fa-bars"></i>
+            <button id="hamburger" class="hamburger d-md-none" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu" type="button">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </button>
             
             <!-- Navigation -->

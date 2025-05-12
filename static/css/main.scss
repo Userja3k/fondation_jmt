@@ -730,6 +730,106 @@ a {
   }
 }
 
+     /* Styles for news list and news items */
+
+
+body .container.section .news-list {
+padding: 0 !important;
+margin: 0 !important;
+}
+
+body .container.section .news-list .news-item {
+  display: flex !important;
+  align-items: center !important;
+  margin-bottom: 1rem !important;
+  border-bottom: 1px solid #ccc !important;
+  padding-bottom: 1rem !important;
+  background-color: transparent !important; /* Remove elevated background /
+  box-shadow: none !important; / Remove shadow /
+  border-radius: 0 !important; / Remove rounded corners */
+  }
+
+body .container.section .news-list .news-item img {
+width: 120px !important;
+height: 80px !important;
+object-fit: cover !important;
+margin-right: 15px !important;
+flex-shrink: 0 !important;
+}
+
+body .container.section .news-list .news-item .news-description {
+  margin-top: 0.5rem !important;
+  }
+
+body .container.section .news-list .news-item h2 {
+margin: 0 0 0.5rem 0 !important;
+}
+
+body .container.section .news-list .news-item button.btn-link {
+  padding: 0 !important;
+  font-weight: normal !important;
+  color: var(--bs-primary) !important;
+  cursor: pointer !important;
+  background: none !important;
+  border: none !important;
+  }
+
+body .container.section .news-list .news-item button.btn-link:hover {
+text-decoration: underline !important;
+}
+
+/* Animated Hamburger Menu Styles */
+.hamburger {
+  width: 30px;
+  height: 22px;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  transform: rotate(0deg);
+  transition: .5s ease-in-out;
+  z-index: 1100;
+}
+
+.hamburger .bar {
+  display: block;
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  background: #fff;
+  border-radius: 4px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: .25s ease-in-out;
+}
+
+.hamburger .bar:nth-child(1) {
+  top: 0px;
+}
+
+.hamburger .bar:nth-child(2) {
+  top: 9px;
+}
+
+.hamburger .bar:nth-child(3) {
+  top: 18px;
+}
+
+.hamburger.active .bar:nth-child(1) {
+  top: 9px;
+  transform: rotate(135deg);
+}
+
+.hamburger.active .bar:nth-child(2) {
+  opacity: 0;
+  left: -60px;
+}
+
+.hamburger.active .bar:nth-child(3) {
+  top: 9px;
+  transform: rotate(-135deg);
+}
+
 // Form styles
 form {
   display: flex;
@@ -827,3 +927,5 @@ form button[type="submit"]:hover {
   border-color: var(--color-primary-dark);
   background-color: var(--color-hover-dark);
 }
+
+

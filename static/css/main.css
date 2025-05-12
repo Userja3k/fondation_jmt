@@ -500,4 +500,155 @@ body .container.section .news-list .news-item button.btn-link:hover {
 text-decoration: underline !important;
 }
 
+/* Animated Hamburger Menu Styles */
+.hamburger {
+  width: 40px; /* increased from 30px */
+  height: 30px; /* increased from 22px */
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  transform: rotate(0deg);
+  transition: .5s ease-in-out;
+  z-index: 1100;
+}
+
+.hamburger .bar {
+  display: block;
+  position: absolute;
+  height: 5px; /* increased from 4px */
+  width: 100%;
+  background: #fff;
+  border-radius: 4px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: .25s ease-in-out;
+}
+
+.hamburger .bar:nth-child(1) {
+  top: 0px;
+}
+
+.hamburger .bar:nth-child(2) {
+  top: 12px; /* increased from 9px */
+}
+
+.hamburger .bar:nth-child(3) {
+  top: 24px; /* increased from 18px */
+}
+
+.hamburger.active .bar:nth-child(1) {
+  top: 12px;
+  transform: rotate(135deg);
+}
+
+.hamburger.active .bar:nth-child(2) {
+  opacity: 0;
+  left: -60px;
+}
+
+.hamburger.active .bar:nth-child(3) {
+  top: 12px;
+  transform: rotate(-135deg);
+}
+
+
+/* Form styles*/
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+form input[type="text"],
+form input[type="date"] {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border-light);
+  border-radius: 4px;
+  font-size: 1rem;
+  color: var(--color-text-light);
+  transition: border-color 0.3s, background-color 0.3s;
+  flex: 1 1 200px;
+}
+
+form input[type="text"]:focus,
+form input[type="date"]:focus {
+  border-color: var(--color-primary-light);
+  outline: none;
+  background-color: var(--color-hover-light);
+}
+
+form button[type="submit"] {
+  padding: 0.5rem 1.5rem;
+  background-color: var(--color-primary-light);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+  flex: 0 0 auto;
+}
+
+form button[type="submit"]:hover {
+  background-color: var(--color-secondary-light);
+}
+
+.dark form input[type="text"],
+.dark form input[type="date"] {
+  border-color: var(--color-border-dark);
+  background-color: var(--color-card-dark);
+  color: var(--color-text-dark);
+}
+
+.dark form input[type="text"]:focus,
+.dark form input[type="date"]:focus {
+  border-color: var(--color-primary-dark);
+  background-color: var(--color-hover-dark);
+}
+
+.dark form button[type="submit"] {
+  background-color: var(--color-primary-dark);
+}
+
+.dark form button[type="submit"]:hover {
+  background-color: var(--color-secondary-dark);
+}
+
+/* Search form styles*/
+.search-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.search-input {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border-light);
+  border-radius: 4px;
+  font-size: 1rem;
+  color: var(--color-text-light);
+  transition: border-color 0.3s, background-color 0.3s;
+  flex: 1 1 200px;
+}
+
+.search-input:focus {
+  border-color: var(--color-primary-light);
+  outline: none;
+  background-color: var(--color-hover-light);
+}
+
+.dark .search-input {
+  border-color: var(--color-border-dark);
+  background-color: var(--color-card-dark);
+  color: var(--color-text-dark);
+}
+
+.dark .search-input:focus {
+  border-color: var(--color-primary-dark);
+  background-color: var(--color-hover-dark);
+}
+
 
