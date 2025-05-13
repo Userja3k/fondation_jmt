@@ -6,7 +6,7 @@
 
 {% block content %}
     <!-- Hero section with blurred background -->
-    <section class="hero" style="position: relative; display: flex; flex-direction: column; align-items: center;">
+    <section class="hero" style="position: relative; display: flex; flex-direction: column; align-items: center; overflow: visible;">
         <div class="hero-content" style="order: 1;">
             <h1 class="gradient-text">Bienvenue</h1>
             <p>La Fondation JMT vous présente une plateforme pour repandre la Parole du Christ et vous presenter les potentiels des jeunes dévoués dans l'apprentissage et la présentation de la Bonne Nouvelle.</p>
@@ -33,18 +33,54 @@
         </section>
 
         <style>
+        .hero {
+            position: relative;
+            overflow: visible; /* Ensure child elements are not clipped */
+            margin-bottom: 40px; /* Add spacing between the hero section and the container */
+        }
+
+        .hero-content {
+            order: 1;
+        }
+
+        .special-event {
+            order: 2;
+            margin-top: 0px; /* Reduced margin to move it closer to the hero content */
+            width: 90%;
+            padding: 20px;
+            font-size: 0.9rem;
+            position: relative; /* Maintain flow in the document */
+            z-index: 1; /* Ensure it does not overlap hero text */
+            margin-bottom: 25px; /* Add spacing from the "Culte de la semaine" section */
+        }
+
         @media (max-width: 400px) {
             .special-event {
-                width: 90% !important;
-                padding: 10px !important;
-                font-size: 0.9rem !important;
+                width: 75% !important;
+                padding: 8px !important;
+                font-size: 0.75rem !important;
+                margin-bottom: 20px; /* Ensure spacing from "Culte de la semaine" */
+                margin-top: -8px; /* Move it slightly closer for smaller screens */
             }
-            .container {
-                padding-left: 10px !important;
-                padding-right: 10px !important;
+        }
+
+        @media (max-width: 768px) {
+            .special-event {
+                width: 80%;
+                padding: 12px;
+                font-size: 0.8rem;
+                margin-bottom: 25px; /* Ensure spacing from "Culte de la semaine" */
+                margin-top: -5px; /* Adjust spacing for medium screens */
             }
-            .culte-de-la-semaine {
-                font-size: 0.9rem !important;
+        }
+
+        @media (min-width: 992px) {
+            .special-event {
+                width: 85%;
+                padding: 15px;
+                font-size: 0.8rem;
+                margin-bottom: 40px;
+                margin-top: -3px;
             }
         }
 

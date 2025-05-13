@@ -764,7 +764,7 @@ a {
       width: 100%;
       background-color: var(--color-primary-light);
       flex-direction: column;
-      padding: 1rem 0;
+      padding: 1rem 0; 
       
       .dark & {
         background-color: var(--color-primary-dark);
