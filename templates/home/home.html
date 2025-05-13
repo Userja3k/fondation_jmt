@@ -89,84 +89,84 @@
         
         <!-- Homepage sections -->
         {% for section in sections %}
-            <section class="section">
-                <h2 class="section-title">{{ section.title }}</h2>
-                
-<div id="carousel-{{ section.id }}" style="overflow-x: auto; scroll-behavior: smooth; -webkit-overflow-scrolling: touch;">
-    <div class="d-flex flex-row flex-nowrap">
+<section class="section">
+    <h2 class="section-title">{{ section.title }}</h2>
 
-                        {% if section.section_type == 'cultes' %}
-                            {% for culte in section_content|get_item:section.id %}
-                                <div style="flex: 0 0 auto; width: 200px; margin-right: 16px;">
-                                    <div class="card" style="display: flex; flex-direction: column; align-items: center;">
-                                        <img src="{{ culte.miniature.url }}" alt="{{ culte.title }}" class="card-image" style="width: 100%; height: auto; object-fit: cover;">
-                                        <div class="card-content" style="text-align: center; margin-top: 8px;">
-                                            <h3 class="card-title">{{ culte.title }}</h3>
-                                            <p class="card-text">Culte du {{ culte.date|date:"j F Y" }}</p>
-                                            <button class="btn btn-link p-0" type="button" onclick="window.location.href='{% url 'archive:archive_list' %}'">Description</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            {% empty %}
-                                <p>Aucun culte disponible pour le moment.</p>
-                            {% endfor %}
-                            {% elif section.section_type == 'evenements' %}
-                                {% for event in section_content|get_item:section.id %}
-                                    <div style="flex: 0 0 auto; width: 200px; margin-right: 16px;">
-                                        <div class="card" style="display: flex; flex-direction: column; align-items: center;">
-                                            <img src="{{ event.image.url }}" alt="{{ event.title }}" class="card-image" style="width: 100%; height: auto; object-fit: cover;">
-                                            <div class="card-content" style="text-align: center; margin-top: 8px;">
-                            <h3 class="card-title" style="color: #0b64ac;">{{ event.title }}</h3>
-                                                <p class="card-text">Événement du {{ event.date|date:"j F Y" }}</p>
-                                                <button class="btn btn-link p-0" type="button" onclick="window.location.href='{% url 'news:news_list' %}'">Description</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                {% empty %}
-                                    <p>Aucun événement disponible pour le moment.</p>
-                                {% endfor %}
-                            {% elif section.section_type == 'theologie' %}
-                            {% for course in section_content|get_item:section.id %}
-                                <div class="carousel-item theology-course">
-                                    <div class="card theology-card">
-                                        <img src="{{ course.image.url }}" alt="{{ course.title }}" class="card-image theology-image">
-                                        <div class="card-content theology-content">
-                                            <h3 class="card-title">{{ course.title }}</h3>
-                                            <p class="card-text">{{ course.description|truncatechars:100 }}</p>
-                                            <a href="{% url 'theology:theology_detail' course.id %}" class="card-link">Voir plus</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            {% empty %}
-                                <p>Aucun cours disponible pour le moment.</p>
-                            {% endfor %}
-                        {% endif %}
+    <div id="carousel-{{ section.id }}" style="overflow-x: auto; scroll-behavior: smooth; -webkit-overflow-scrolling: touch;">
+        <div class="d-flex flex-row flex-nowrap">
+
+            {% if section.section_type == 'cultes' %}
+                {% for culte in section_content|get_item:section.id %}
+                    <div style="flex: 0 0 auto; width: 200px; margin-right: 16px;">
+                        <div class="card" style="display: flex; flex-direction: column; align-items: center;">
+                            <img src="{{ culte.miniature.url }}" alt="{{ culte.title }}" class="card-image" style="width: 100%; height: auto; object-fit: cover;">
+                            <div class="card-content" style="text-align: center; margin-top: 8px;">
+                                <h3 class="card-title" style="color: #0b64ac;">{{ culte.title }}</h3>
+                                <p class="card-text">Culte du {{ culte.date|date:"j F Y" }}</p>
+                                <button class="btn btn-link p-0" type="button" data-href="{% url 'archive:archive_list' %}" onclick="window.location.href=this.getAttribute('data-href')">Description</button>
+                            </div>
+                        </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel-{{ section.id }}" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Précédent</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carousel-{{ section.id }}" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Suivant</span>
-                    </button>
-                </div>
-                
-                {% if section.section_type == 'cultes' %}
-                    <div class="text-center mt-4">
-                        <a href="{% url 'archive:archive_list' %}" class="btn">Voir tous les cultes</a>
+                {% empty %}
+                    <p>Aucun culte disponible pour le moment.</p>
+                {% endfor %}
+            {% elif section.section_type == 'evenements' %}
+                {% for event in section_content|get_item:section.id %}
+                    <div style="flex: 0 0 auto; width: 200px; margin-right: 16px;">
+                        <div class="card" style="display: flex; flex-direction: column; align-items: center;">
+                            <img src="{{ event.image.url }}" alt="{{ event.title }}" class="card-image" style="width: 100%; height: auto; object-fit: cover;">
+                            <div class="card-content" style="text-align: center; margin-top: 8px;">
+                                <h3 class="card-title" style="color: #0b64ac;">{{ event.title }}</h3>
+                                <p class="card-text">Événement du {{ event.date|date:"j F Y" }}</p>
+                                <button class="btn btn-link p-0" type="button" data-href="{% url 'news:news_list' %}" onclick="window.location.href=this.getAttribute('data-href')">Description</button>
+                            </div>
+                        </div>
                     </div>
-                {% elif section.section_type == 'evenements' %}
-                    <div class="text-center mt-4">
-                        <a href="{% url 'news:news_list' %}" class="btn">Voir tous les événements</a>
+                {% empty %}
+                    <p>Aucun événement disponible pour le moment.</p>
+                {% endfor %}
+            {% elif section.section_type == 'theologie' %}
+                {% for course in section_content|get_item:section.id %}
+                    <div class="carousel-item theology-course">
+                        <div class="card theology-card">
+                            <img src="{{ course.image.url }}" alt="{{ course.title }}" class="card-image theology-image">
+                            <div class="card-content theology-content">
+                                <h3 class="card-title" style="color: #0b64ac;">{{ course.title }}</h3>
+                                <p class="card-text">{{ course.description|truncatechars:100 }}</p>
+                                <a href="{% url 'theology:theology_detail' course.id %}" class="card-link">Voir plus</a>
+                            </div>
+                        </div>
                     </div>
-                {% elif section.section_type == 'theologie' %}
-                    <div class="text-center mt-4">
-                        <a href="{% url 'theology:theology_list' %}" class="btn">Voir tous les cours</a>
-                    </div>
-                {% endif %}
-            </section>
-        {% endfor %}
+                {% empty %}
+                    <p>Aucun cours disponible pour le moment.</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-{{ section.id }}" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Précédent</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel-{{ section.id }}" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Suivant</span>
+        </button>
+    </div>
+
+    {% if section.section_type == 'cultes' %}
+        <div class="text-center mt-4">
+            <a href="{% url 'archive:archive_list' %}" class="btn">Voir tous les cultes</a>
+        </div>
+    {% elif section.section_type == 'evenements' %}
+        <div class="text-center mt-4">
+            <a href="{% url 'news:news_list' %}" class="btn">Voir tous les événements</a>
+        </div>
+    {% elif section.section_type == 'theologie' %}
+        <div class="text-center mt-4">
+            <a href="{% url 'theology:theology_list' %}" class="btn">Voir tous les cours</a>
+        </div>
+    {% endif %}
+</section>
+{% endfor %}
     </div>
 {% endblock %}
 
